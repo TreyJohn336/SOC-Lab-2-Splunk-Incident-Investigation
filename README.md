@@ -1,6 +1,6 @@
-SOC Lab 2 — Splunk Cloud Security Incident Investigation
+# SOC Lab 2 — Splunk Cloud Security Incident Investigation
 
-Project Overview
+## Project Overview
 
 This project demonstrates a simulated Security Operations Center (SOC) Tier 1 investigation using Splunk Cloud.
 
@@ -12,7 +12,7 @@ Disclaimer: All security events, usernames, hostnames, and IP addresses in this 
 
 ⸻
 
-Tools and Technologies
+## Tools and Technologies
 
 * Splunk Cloud — Security Information and Event Management (SIEM)
 * Splunk Search Processing Language (SPL)
@@ -20,7 +20,7 @@ Tools and Technologies
 * CSV log ingestion
 * GitHub — Technical documentation and portfolio
 
-Skills Practiced
+## Skills Practiced
 
 * Security event monitoring
 * SIEM investigation
@@ -34,7 +34,7 @@ Skills Practiced
 
 ⸻
 
-Lab Environment
+## Lab Environment
 
 SIEM Platform: Splunk Cloud
 
@@ -52,7 +52,7 @@ The dataset contained Windows authentication events associated with multiple use
 
 I uploaded the CSV dataset into Splunk Cloud and used SPL searches to investigate authentication patterns.
 
-Windows Event IDs Investigated
+## Windows Event IDs Investigated
 
 Event ID 4625 — Failed Logon
 
@@ -66,9 +66,9 @@ Both event types were important for determining whether repeated failed login at
 
 ⸻
 
-Investigation 1 — Suspicious Failed Login Activity
+## Investigation 1 — Suspicious Failed Login Activity
 
-Objective
+## Objective
 
 Identify accounts experiencing repeated failed authentication attempts and determine whether the activity could indicate password guessing or a brute-force attack.
 
@@ -80,7 +80,7 @@ Findings
 
 I identified suspicious authentication activity involving the account jsmith.
 
-The simulated logs showed:
+## The simulated logs showed:
 
 * Seven consecutive failed login attempts between approximately 2:01 PM and 2:07 PM.
 * A successful login at approximately 2:08 PM.
@@ -93,7 +93,7 @@ Username: jsmith
 
 Target System: JFS-DC01
 
-Analysis
+## Analysis
 
 The repeated failed authentication attempts followed by a successful login created a suspicious pattern.
 
@@ -105,9 +105,9 @@ Assessment: Suspicious authentication activity requiring further investigation.
 
 ⸻
 
-Investigation 2 — Successful Authentication and Potential Lateral Movement
+## Investigation 2 — Successful Authentication and Potential Lateral Movement
 
-Objective
+## Objective
 
 Determine whether the suspicious account authenticated to another system following the initial successful login.
 
@@ -115,7 +115,7 @@ Splunk Search
 
 index=main extracted_host="JFS-WKS07"
 
-Findings
+## Findings
 
 I identified successful authentication records associated with:
 
@@ -133,7 +133,7 @@ The logs showed authentication activity on JFS-WKS07 shortly after a successful 
 
 Two matching records were visible for the workstation. Because their displayed fields were identical, I could not establish whether they represented separate logons or duplicate records.
 
-Analysis
+## Analysis
 
 Successful authentication to another computer shortly after suspicious login activity may indicate lateral movement.
 
@@ -145,9 +145,9 @@ Assessment: Potential lateral movement requiring additional investigation.
 
 ⸻
 
-Investigation 3 — Comparing Authentication Activity Across Accounts
+## Investigation 3 — Comparing Authentication Activity Across Accounts
 
-Objective
+## Objective
 
 Compare the suspicious activity involving jsmith against another account to understand differences in authentication patterns.
 
@@ -155,7 +155,7 @@ Splunk Search
 
 index=main username="rpatel"
 
-Findings
+## Findings
 
 The account rpatel showed:
 
@@ -170,7 +170,7 @@ index=main username="rpatel" action="success"
 
 This search isolated successful authentication events for the account.
 
-Analysis
+## Analysis
 
 Unlike jsmith, the rpatel account showed intermittent successful and failed authentication attempts.
 
@@ -182,7 +182,7 @@ Assessment: Requires context before classifying the activity as legitimate or ma
 
 ⸻
 
-Investigation 4 — Source IP Address Correlation
+## Investigation 4 — Source IP Address Correlation
 
 Objective
 
@@ -198,7 +198,7 @@ The IP address 10.0.0.21 was associated with authentication activity involving r
 
 The investigation also identified 198.51.100.24 as the source IP associated with suspicious jsmith authentication activity.
 
-Analysis
+## Analysis
 
 Source IP correlation helped identify relationships between accounts, authentication attempts, and destination systems.
 
@@ -208,7 +208,7 @@ It should not be interpreted as a verified malicious public IP address.
 
 ⸻
 
-Incident Timeline
+## Incident Timeline
 
 Time	Event	System
 2:01–2:07 PM	Seven failed jsmith logins	JFS-DC01
@@ -217,7 +217,7 @@ Time	Event	System
 
 Date: November 14, 2026
 
-Timeline Analysis
+## Timeline Analysis
 
 The sequence of events raised concerns because multiple failed logins were followed by successful authentication and subsequent activity on another system.
 
@@ -225,7 +225,7 @@ This pattern justified further investigation into possible credential compromise
 
 ⸻
 
-SOC Tier 1 Incident Assessment
+## SOC Tier 1 Incident Assessment
 
 Incident Category: Suspicious Authentication Activity
 
@@ -244,7 +244,7 @@ Source IP: 198.51.100.24 (simulated)
 
 Recommended Priority: Medium, pending organizational severity criteria and additional evidence.
 
-Evidence Supporting Escalation
+## Evidence Supporting Escalation
 
 1. Multiple consecutive failed authentication attempts.
 2. Successful authentication immediately following the failures.
@@ -252,7 +252,7 @@ Evidence Supporting Escalation
 4. Successful authentication activity involving a second system.
 5. Insufficient evidence to confirm whether the activity was authorized.
 
-Investigation Limitations
+## Investigation Limitations
 
 The simulated dataset provided authentication records but did not include enough context to confirm account compromise, identify a real attacker, or prove lateral movement.
 
@@ -260,11 +260,11 @@ The investigation also could not determine whether identical authentication reco
 
 ⸻
 
-Recommended Incident Escalation
+## Recommended Incident Escalation
 
 If this activity were detected in a production SOC environment, I would recommend escalating the findings for additional investigation.
 
-Recommended Next Steps
+## Recommended Next Steps
 
 1. Verify whether the authentication activity was authorized by the account owner.
 2. Review additional Windows Security Logs and endpoint telemetry.
@@ -278,7 +278,7 @@ Escalation Decision: Escalate for further investigation due to the suspicious au
 
 ⸻
 
-Key Takeaways
+## Key Takeaways
 
 This lab helped me understand how SOC Analysts investigate suspicious authentication events using a SIEM platform.
 
@@ -290,7 +290,7 @@ SOC Analysts must evaluate evidence carefully, document their findings, recogniz
 
 ⸻
 
-Project Evidence
+## Project Evidence
 
 Screenshots of the Splunk searches and investigation results will be included in this repository to demonstrate the analysis process.
 
