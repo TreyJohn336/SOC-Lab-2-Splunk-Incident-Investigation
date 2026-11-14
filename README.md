@@ -309,3 +309,26 @@ Certification: CompTIA Security+
 Lab 1: Wireshark Network Traffic Analysis
 
 Lab 2: Splunk Cloud Security Incident Investigation
+
+
+
+## Investigation Screenshots
+
+### 01 - Splunk Log Overview
+![Splunk Log Overview](01-Splunk-Log-Overview.jpeg)
+
+### 02 - User Login Investigation
+![User Login Investigation](02-User-Login-Investigation.jpeg)
+
+### 03 - Windows Event Analysis
+![Windows Event Analysis](03-Windows-Event-Analysis.jpeg)
+
+### 04 - Potential Lateral Movement
+![Potential Lateral Movement](04-Potential-Lateral-Movement.jpeg)
+
+### 05 - Successful Login Analysis
+![Successful Login Analysis](05-Successful-Login-Analysis.jpeg)
+
+### 06 - Suspicious Login Activity
+![Suspicious Login Activity](06-Suspicious-Login-Activity.jpeg)
+  
